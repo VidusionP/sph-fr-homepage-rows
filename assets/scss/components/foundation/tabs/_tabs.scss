@@ -49,7 +49,16 @@
         padding: remCalc(11px) remCalc(18px);
     }
 }
-
+// style="margin-top:20px; margin-bottom: 0px;"
+.tab-content-title {
+    font-weight: 400;
+    font-size: 23px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    @include breakpoint("medium") {
+        font-size: 30px;
+    }
+}
 .tab-content {
     //
     // State for when tab-content has js generated of calculated content, like carousel
@@ -58,6 +67,11 @@
     // are incorrect as the elements inside the tab-content have no dimensions to grab.
     // Carousel is a prime example. It needs widths to calculate the layout and slides
     // -----------------------------------------------------------------------------
+    padding: unset;
+    padding-bottom: 1.5rem;
+
+        // height: 400px;
+    
     &.has-jsContent {
         display: block;
         height: 0;
@@ -71,6 +85,7 @@
             overflow: visible;
             padding: $tabs-content-padding;
             visibility: visible;
+            
         }
         // scss-lint:enable NestingDepth
     }
