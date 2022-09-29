@@ -1,5 +1,5 @@
 <style>.loadingOverlay:before { top: 50% !important;}</style>
-<div class="halo-block halo-block-product halo-block-product-tabs padding-top-30 padding-bottom-50">
+<div class="halo-block halo-block-product halo-block-product-tabs padding-top-30">
     <div class="container">
         <div class="halo-block-header">
             <h3 class="title">{{title}}</h3>
@@ -25,16 +25,13 @@
             <div class="tabs-contents">
                 {{#each (limit categories theme_settings.home_product_block-id-tab-cate-limit)}}
                 <h2 class="tab-content-title"  >{{name}}</h2>
-
                     {{#if @index '==' 0}}
-
                         <div class="tab-content is-active" style="position: relative; min-height: 200px;" data-name="{{name}}" id="category_{{id}}" role="tabpanel" aria-hidden="true" data-tab-category-id="{{id}}" data-tab-category-url="{{concat url ../../data-sort-tab}}">
                             
                             <div style="top: unset;" class="loadingOverlay"></div>
                             <div class="productCarousel"></div>
                         </div>
                     {{else}}
-
                         <div class="tab-content is-active" style="position: relative; min-height: 200px;" data-name="{{name}}" id="category_{{id}}" role="tabpanel" aria-hidden="false" data-tab-category-id="{{id}}" data-tab-category-url="{{concat url ../../data-sort-tab}}">
                             <div style="top: unset;" class="loadingOverlay"></div>
                             <div class="productCarousel"></div>
