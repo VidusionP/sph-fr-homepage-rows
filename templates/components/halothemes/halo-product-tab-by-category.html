@@ -25,13 +25,13 @@
                 {{#each (limit categories theme_settings.home_product_block-id-tab-cate-limit)}}
 
                     {{#if @index '==' 0}}
-                    <h2 style="margin-top:20px;">{{name}}</h2>
+{{name}}</h2>
                         <div class="tab-content is-active" id="category_{{id}}" role="tabpanel" aria-hidden="true" data-tab-category-id="{{id}}" data-tab-category-url="{{concat url ../../data-sort-tab}}">
                             <div class="loadingOverlay"></div>
                             <div class="productCarousel"></div>
                         </div>
                     {{else}}
-                    <h2 style="margin-top:20px;">{{name}}</h2>
+{{name}}</h2>
                         <div class="tab-content is-active" id="category_{{id}}" role="tabpanel" aria-hidden="false" data-tab-category-id="{{id}}" data-tab-category-url="{{concat url ../../data-sort-tab}}">
                             <div class="loadingOverlay"></div>
                             <div class="productCarousel"></div>
