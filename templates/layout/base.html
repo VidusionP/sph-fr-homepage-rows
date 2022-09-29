@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ locale_name }}">
+    <head>
+        <title>{{ head.title }}</title>
+        {{{ resourceHints }}}
+        {{{ head.meta_tags }}}
+        {{{ head.config }}}
+        {{#block "head"}} {{/block}}
+
+        <link href="{{ head.favicon }}" rel="shortcut icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script>
+            {{!-- Change document class from no-js to js so we can detect this in css --}}
+            document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+        </script>
+
+        {{> components/common/polyfill-script }}
+
+        {{!-- Load Lazysizes script ASAP so images will appear --}}
+        <script>
+            {{!-- Only load visible elements until the onload event fires, after which preload nearby elements. --}}
+            window.lazySizesConfig = window.lazySizesConfig || {};
+            window.lazySizesConfig.loadMode = 1;
+        </script>
+        <script async src="{{cdn 'assets/dist/theme-bundle.head_async.js'}}"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+        {{{stylesheet '/assets/css/theme.css'}}}
+
+        {{{head.scripts}}}
+
+        {{~inject 'themeSettings' theme_settings}}
+        {{~inject 'showAdminBar' theme_settings.show-admin-bar}}
+        {{~inject 'genericError' (lang 'common.generic_error')}}
+        {{~inject 'maintenanceModeSettings' settings.maintenance}}
+        {{~inject 'adminBarLanguage' (langJson 'admin')}}
+        {{~inject 'urls' urls}}
+        {{~inject 'secureBaseUrl' settings.secure_base_url}}
+        {{~inject 'cartId' cart_id}}
+        {{~inject 'channelId' settings.channel_id}}
+        {{~inject 'template' template}}
+        {{~inject "zoomSize" theme_settings.zoom_size}}
+        {{~inject "productSize" theme_settings.product_size}}
+        {{~inject 'token' settings.storefront_api.token}}
+        {{~inject 'money' settings.money}}  
+
+        <style>            
+            .nav-language-wrap {
+                position: relative;
+                margin-left: 10px;
+            }            
+            .nav-language-wrap .nav-language-selection-wrap {
+                display: none;
+                position: absolute;
+                padding: 8px 10px;
+                border-radius: 4px;
+                width: max-content;
+                text-align: left;
+                background-color: #fafaf4;
+                bottom: -80px;
+                left: -30px;
+                margin: 0;
+                list-style: none;
+            }      
+            .nav-language-wrap .nav-language-selection-wrap::before {
+                content: "";
+                display: block;
+                width: 10px;
+                height: 10px;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-bottom: 5px solid white;
+                position: absolute;
+                top: -9px;
+                left: 50%;
+            }      
+            .nav-language-wrap .nav-language-selection-wrap a:hover {
+                color: #f4ad57;
+            }
+            .nav-language-wrap .nav-language-selection-wrap a {
+                color: #212324;
+            }            
+            .nav-language-wrap span {
+                position: relative;
+                cursor: pointer;
+                color: #faf8f9;
+                display: flex;
+                transform: translateY(3px);
+            }
+            .nav-language-wrap img {
+                width: 36px;
+                height: auto;
+            }
+            .nav-language-wrap span::after {
+                content: "";
+                background-image: url(/content/images/common/arrow-down3.svg);
+                width: 15px;
+                height: 15px;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+                margin-left: 8px;
+                display: inline-block;                
+                transform: translateY(3px);
+            }
+            .navPages-language {
+                display: flex !important;
+            }
+            .navPages-language div {
+                margin-right: 10px;
+                margin-top: 8px;
+                margin-bottom: 8px;
+                width: max-content;
+            }
+            .navPages-language div:first-child {
+                border-right: 1px solid #eeeef1;
+                padding-right: 10px;
+                margin-left: 20px;
+            }
+            .popup-country {
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                left: 0;
+                top: 0;
+                display: none;
+                justify-content: center;
+                align-items: center;
+                z-index: 999;
+            }
+            .popup-country-overlay {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.3);
+                left: 0;
+                top: 0;
+            }
+            .popup-country-content {
+                text-align: center;
+                z-index: 9;
+                background-color: #fff;
+                text-align: center;
+                padding: 2rem;
+                max-width: 75%;
+            }
+            .popup-country-title {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                text-transform: uppercase;
+            }
+            .popup-country-content a {
+                background-color: #444;
+                color: #fff;
+                padding: 0.8rem 1rem;
+                margin: 1.3rem auto;
+                text-transform: uppercase;
+                font-size: 1rem;
+                display: inline-block;
+                text-decoration: none;
+            }
+            .popup-country-continue {
+                font-size: .8rem;
+            }
+            .popup-country-continue-link {
+                text-decoration: underline;
+                cursor: pointer;
+            }
+            @media (max-width:1024px) {
+                .nav-language-wrap {
+                    display: none;
+                }
+            }  
+        </style>
+    </head>
+    <body class="page-type-{{page_type}} page-full-width{{#if theme_settings.halo_add_to_cart_popup '==' 'normal'}} popup-normal{{/if}}{{#unless theme_settings.halo_homepage_layout_1}} home-layout-2{{/unless}}">
+        <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
+
+        {{> components/common/header }}
+        {{> components/common/body }}
+        {{> components/common/footer }}
+
+        <div class="popup-country">
+            <div class="popup-country-overlay"></div>
+            <div class="popup-country-content">
+                <div class="popup-country-title"></div>
+                <div class="popup-country-main">
+                </div> 
+                    <a class="popup-country-link"></a>
+                <div class="popup-country-continue">
+                </div>
+            </div>
+        </div>
+
+        <div class="halo-background"></div>
+
+        <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+        <script>window.consentManagerTranslations = `{{{langJson 'consent_manager'}}}`;</script>
+        <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+        <script>
+            {{!-- Exported in app.js --}}
+            window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
+
+        {{{footer.scripts}}}
+
+        {{> components/halothemes/halo-newsletter-popup}}
+        {{> components/halothemes/halo-recently-bought-product}}
+        {{> components/halothemes/halo-recently-viewed-products}}
+        {{> components/halothemes/sidebar/halo-sidebar}}
+        {{> components/halothemes/halo-ask-an-expert}}
+        {{> components/halothemes/halo-megamenu}}
+        
+        <script type="text/javascript">
+            /* <![CDATA[ */
+            function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;if(lang_pair=='')return;var lang=lang_pair.split('|')[1];var plang=location.hostname.split('.')[0];if(plang.length !=2 && plang.toLowerCase() != 'zh-cn' && plang.toLowerCase() != 'zh-tw')plang='fr';location.href=location.protocol+'//'+(lang == 'fr' ? '' : lang+'.')+location.hostname.replace('www.', '').replace(RegExp('^' + plang + '\\.'), '')+location.pathname+location.search;}
+
+            /* ]]> */
+            window.addEventListener("DOMContentLoaded", function() {
+                if (location.href.includes("en.superhairpieces.fr")) {
+                    document.querySelector(".nav-language-wrap span").innerHTML=`<img src="/content/images/common/flag-uk.svg" alt="English"/>`
+                    document.querySelector(".nav-language-wrap li[lang=en]").style.fontWeight="bold";
+                    document.querySelector(".navPages-language div[lang=en]").style.fontWeight="bold";
+                } else {
+                    document.querySelector(".nav-language-wrap span").innerHTML=`<img src="/content/images/common/flag-fr.svg" alt="French"/>`
+                    document.querySelector(".nav-language-wrap li[lang=fr]").style.fontWeight="bold";
+                    document.querySelector(".navPages-language div[lang=fr]").style.fontWeight="bold";
+                }        
+                $(".nav-language-wrap span").on("click", function() {
+                    $(".nav-language-wrap .nav-language-selection-wrap").toggle();
+                })
+            })
+        </script>
+    </body>
+</html>
