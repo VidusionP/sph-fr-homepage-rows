@@ -339,13 +339,13 @@ export default class Home extends PageManager {
         function slickCarousel(wrap){
             wrap.slick({
                 dots: false,
-                arrows: false,
+                arrows: true,
                 infinite: false,
                 mobileFirst: true,
                 slidesToShow: 2,
                 slidesToScroll: 1,
-                nextArrow: "<svg class='slick-next slick-arrow slick-arrow-large' aria-label='Next Slide'><use xlink:href=#slick-arrow-next></use></svg>", 
-                prevArrow: "<svg class='slick-prev slick-arrow slick-arrow-large' aria-label='Previous Slide'><use xlink:href=#slick-arrow-prev></use></svg>",
+                nextArrow: "<svg class='slick-tab1 slick-next slick-arrow slick-arrow-large' aria-label='Next Slide'><use xlink:href=#slick-arrow-next></use></svg>", 
+                prevArrow: "<svg class='slick-tab2 slick-prev slick-arrow slick-arrow-large' aria-label='Previous Slide'><use xlink:href=#slick-arrow-prev></use></svg>",
                 responsive: [
                 {
                     breakpoint: 1024,
