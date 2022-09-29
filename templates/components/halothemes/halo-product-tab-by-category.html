@@ -5,29 +5,12 @@
             <h3 class="title">{{title}}</h3>
         </div>
         <div class="productCarousel-tabs">
-            <!-- <ul class="tabs" data-tab role="tablist">
-                {{#each (limit categories theme_settings.home_product_block-id-tab-cate-limit)}}
-                    {{#if @index '==' 0}}
-                        <li class="tab is-active" role="presentation">
-                            <a class="tab-title" href="#category_{{id}}" role="tab" tabindex="0" aria-selected="true" aria-controls="category_{{id}}">
-                                <span>{{name}}</span>
-                            </a>
-                        </li>
-                    {{else}}
-                        <li class="tab" role="presentation">
-                            <a class="tab-title" href="#category_{{id}}" role="tab" tabindex="0" aria-selected="false" aria-controls="category_{{id}}">
-                                <span>{{name}}</span>
-                            </a>
-                        </li>
-                    {{/if}}
-                {{/each}}
-            </ul> -->
+
             <div class="tabs-contents">
                 {{#each (limit categories theme_settings.home_product_block-id-tab-cate-limit)}}
                 <h2 class="tab-content-title"  >{{name}}</h2>
                     {{#if @index '==' 0}}
                         <div class="tab-content is-active" style="position: relative; min-height: 200px;" data-name="{{name}}" id="category_{{id}}" role="tabpanel" aria-hidden="true" data-tab-category-id="{{id}}" data-tab-category-url="{{concat url ../../data-sort-tab}}">
-                            
                             <div style="top: unset;" class="loadingOverlay"></div>
                             <div class="productCarousel"></div>
                         </div>

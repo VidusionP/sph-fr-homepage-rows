@@ -49,7 +49,7 @@
         padding: remCalc(11px) remCalc(18px);
     }
 }
-// style="margin-top:20px; margin-bottom: 0px;"
+
 .tab-content-title {
     font-weight: 400;
     font-size: 23px;
@@ -69,8 +69,6 @@
     // -----------------------------------------------------------------------------
     padding: unset;
     padding-bottom: 1.5rem;
-
-        // height: 400px;
     
     &.has-jsContent {
         display: block;

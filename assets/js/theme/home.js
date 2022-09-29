@@ -199,7 +199,6 @@ export default class Home extends PageManager {
                     }
                 }
                 if(!$('.productCarousel-tabs .tab-content.is-active .productCarousel .productCarousel-slide').length){
-                    console.log(block.find('.loadingOverlay'))
                     block.find('.loadingOverlay').show();
                     loadCategory(catId, catUrl, options, wrap, blockId);
                 }
@@ -326,7 +325,6 @@ export default class Home extends PageManager {
         function loadCategory(id, url, option, wrap, blockId){
             utils.api.getPage(url, option, (err, response) => {
                 if(!wrap.find('.productCarousel-slide').length){
-                    console.log(response);
                     wrap.html(response);
                     slickCarousel(wrap);
                     wrap.parents('.tab-content').find('.loadingOverlay').remove();
