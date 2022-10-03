@@ -263,12 +263,14 @@
         align-items: center;
         position: absolute;
         z-index: 1;
-        left: 0;
-        top: 0;
+        left: 50%;
+        top: 40%;
+        transform: translate(-50%,-50%);
         width: 65%;
         height: 100%;
-        padding-left: 1.5rem;
+        // padding-left: 1.5rem;
         font-family: 'Roboto', sans-serif;
+        text-align: center;
         .text-main {
             font-weight: 500;
             font-size: 24px;
@@ -294,6 +296,11 @@
             padding-right: 1.5rem;
             width: 100%;
             color: #C81616;
+            transform: unset;
+            left: 0;
+            top: 0;
+            text-align: unset;
+
             .text-main {
                 white-space: pre-line;
                 line-height: 26px;
@@ -311,6 +318,13 @@
                 display: none;
             }
         }
+        @media (max-width: 375px) {
+            .text-small1 {
+                display: block !important;
+                font-size: 13px;
+            }
+        }
+
         @media (max-width: 389px) {
             .text-small {
                 display: none;
@@ -325,6 +339,10 @@
             }
         }
         @media (min-width: 700px) {            
+            .text-small1 {
+                width: 85% !important;
+                margin: 3px auto 10px !important;
+            }      
             .text-main {
                 font-size: 30px;
             }
@@ -347,6 +365,10 @@
             }
         }
         @media (min-width: 780px) {
+            .text-small1 {
+                margin: 5px auto 15px !important;
+            }
+
             .text-main {
                 font-size: 35px;
             }
@@ -379,6 +401,10 @@
             }
         }
         @media (min-width: 900px) {
+            .text-small1 {
+                margin-bottom: 20px !important;
+            }
+
             &.right {
                 padding-left: 50%;
             }
@@ -403,7 +429,10 @@
             }
         }
         @media (min-width:1281px) {
-            padding-left: 60px;
+            // padding-left: 60px;
+            padding-left: unset ;
+            width: 425px ;
+
             .text-main {
                 font-size: 80px;
             }
